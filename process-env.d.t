@@ -4,6 +4,7 @@ declare global {
       BOT_TOKEN: string;
       MONGO_URL: string;
       MONGO_DB_NAME: string;
+      SERVER_PORT: number;
     }
   }
 }

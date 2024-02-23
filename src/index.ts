@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
 import setupBot from "./bot";
+import startApp from "./app";
+
 
 mongoose
   .connect(
@@ -10,6 +12,7 @@ mongoose
       autoCreate: true,
     }
   ).then((client) => {
+    startApp();
     startBot(client.connection.db);
   }).catch((error) => {
     console.error('Error connecting to the database', error);
