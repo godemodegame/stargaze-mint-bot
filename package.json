@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@types/node": "^20.11.20",
+    "ts-node": "^9.0.0",
     "chain-registry": "^1.28.1",
     "cosmjs-utils": "^0.1.0",
     "dotenv": "^16.4.4",
