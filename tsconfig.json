@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "target": "es6",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "es2018",
     "moduleResolution": "node",
+    "module": "commonjs",
     "sourceMap": true,
-    "outDir": "dist"
+    "rootDir": "src",
+    "outDir": "dist",
+    "lib": ["esnext", "dom", "es2018", "esnext.asynciterable"],
+    "esModuleInterop": true
   },
-  "lib": ["es2015"]
+  "exclude": ["node_modules"]
 }
