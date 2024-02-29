@@ -56,7 +56,19 @@ const startApp = () => {
             }).save();
             return res.json({ success: true });
         }
-        console.log("error")
+        return res.status(401).json({});
+    });
+
+    app.post("/mintsList", async (req: Request, res: Response) => {
+        const data = new URLSearchParams(req.body.initData);
+        const data_check_string = getCheckString(data);
+        const secret_key = HMAC_SHA256("WebAppData", process.env.BOT_TOKEN!).digest();
+	    const hash = HMAC_SHA256(secret_key, data_check_string).digest("hex");
+
+	    if (hash === data.get("hash")) {
+            const mints = await mint.find({ minted: false, telegram_id: getTelegramId(req.body.initData) });
+            return res.json({ mints });
+        }
         return res.status(401).json({});
     });
 
