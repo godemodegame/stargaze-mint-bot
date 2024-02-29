@@ -9,9 +9,6 @@ import { newComer, walletAddress } from '../helpers';
 const start = async (context: SceneContext) => {
     await newComer(context);
     const user = await User.findOne({ telegram_id: context.from.id })
-    if (user.role !== 'admin' && user.role !== 'whitelist') {
-        return;
-    }
     if (user?.seed === null || user?.seed === undefined) {
         context.reply(
             "Welcome!\n\nFirstly we need your seed-phrase. \nBetter to generate new because I'll store it in my server", 
@@ -22,7 +19,7 @@ const start = async (context: SceneContext) => {
         context.reply(
             `Welcome back, ${context.from.first_name}\n\nYour wallet: ${ address }`,
             Markup.inlineKeyboard([
-                [Markup.button.webApp('🔨 Mint', 'https://stargaze-mint-webapp.vercel.app')],
+                [Markup.button.webApp('🔨 Mint', 'https://stargaze-mint-webapp.vercel.app/')],
                 user.role === 'admin' ?
                     [{ text: '👛 Change seed', callback_data: 'changeSeed'}, { text: '✉️ Send', callback_data: 'sendMessages'}] :
                     [{ text: '👛 Change seed', callback_data: 'changeSeed'}],

@@ -9,6 +9,11 @@ const startApp = () => {
         res.send("created");
     });
 
+    app.get("/", (req: Request, res: Response) => {
+        console.log("createMint", req.body);
+        res.send("created");
+    });
+
     app.listen(port, () => {
         console.log(`[server]: Server is running at http://localhost:${port}`);
     });
