@@ -35,9 +35,9 @@ async function executeContract(id: number, contractAddress: string, price: numbe
     const result = await client.signAndBroadcast(senderAddress, messages, fee, "");
 
     if (result.code !== undefined && result.code !== 0) {
-        console.error('Transaction failed:', result);
+        return false;
     } else {
-        console.log('Transaction successful:', result);
+        return true;
     }
 }
 
