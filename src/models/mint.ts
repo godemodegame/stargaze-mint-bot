@@ -1,9 +1,9 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { IMint } from '../interfaces';
 
-export interface IUserModel extends IMint, Document {}
+export interface IMintModel extends IMint, Document {}
 
-const UserSchema = new Schema<IMint>({
+const MintSchema = new Schema<IMint>({
     telegram_id: {
         type: Number,
         required: true,
@@ -31,4 +31,4 @@ const UserSchema = new Schema<IMint>({
     }
 });
 
-export default mongoose.model<IUserModel>('User', UserSchema);
+export default mongoose.model<IMintModel>('Mint', MintSchema);
