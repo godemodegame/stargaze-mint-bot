@@ -22,7 +22,7 @@ const start = async (context: SceneContext) => {
         context.reply(
             `Welcome back, ${context.from.first_name}\n\nYour wallet: ${ address }`,
             Markup.inlineKeyboard([
-                [Markup.button.webApp('🔨 Mint', 'https://webapp-godemodegame.p.tnnl.in/swap')],
+                [Markup.button.webApp('🔨 Mint', 'https://stargaze-mint-webapp.vercel.app')],
                 user.role === 'admin' ?
                     [{ text: '👛 Change seed', callback_data: 'changeSeed'}, { text: '✉️ Send', callback_data: 'sendMessages'}] :
                     [{ text: '👛 Change seed', callback_data: 'changeSeed'}],

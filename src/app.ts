@@ -4,10 +4,11 @@ const startApp = () => {
     const app: Express = express();
     const port = process.env.SERVER_PORT;
 
-    app.get("/createMint", (req: Request, res: Response) => {
+    app.post("/createMint", (req: Request, res: Response) => {
+        console.log("createMint", req.body);
         res.send("created");
     });
-      
+
     app.listen(port, () => {
         console.log(`[server]: Server is running at http://localhost:${port}`);
     });
