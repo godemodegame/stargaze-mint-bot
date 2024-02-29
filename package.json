@@ -4,8 +4,15 @@
   "module": "CommonJS",
   "description": "",
   "main": "index.ts",
+  "engines": {
+    "node": "21.x"
+  },
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "postinstall": "tsc",
+    "watch-node": "nodemon dist/index.js",
+    "watch-ts": "tsc -w",
+    "deploy": "git add . && git commit -m Heroku && git push heroku master"
   },
   "keywords": [],
   "author": "",
