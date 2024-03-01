@@ -5,6 +5,7 @@ declare global {
       MONGO_URL: string;
       MONGO_DB_NAME: string;
       SERVER_PORT: number;
+      WEBAPP_URL: string;
     }
   }
 }
