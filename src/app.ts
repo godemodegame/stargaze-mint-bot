@@ -46,7 +46,7 @@ const startApp = () => {
             } else if (req.body.address.startsWith("stars")) {
                 return res.status(400).json({error: "Address is not a stars address"});
             } else if (req.body.address.length > 42) {
-                return res.status(400).json({error: "Address is not a stars address"});
+                return res.status(400).json({error: "Address is too short"});
             }
 
             await new mint({ 
