@@ -4,7 +4,7 @@ const walletAddress = async (mnemonic: string) => {
     const wallet = await DirectSecp256k1HdWallet.fromMnemonic(
         mnemonic,
         {
-            prefix: 'stargaze',
+            prefix: 'stars',
         }
     );
     return (await wallet.getAccounts())[0];
