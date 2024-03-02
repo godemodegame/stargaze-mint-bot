@@ -27,7 +27,12 @@ async function executeContract(id: number, contractAddress: string, price: numbe
         }),
     }));
 
-    const result = await client.signAndBroadcast(senderAddress, messages, "auto", "");
+    const fee = {
+        amount: coins(0, "ustars"), 
+        gas: "10000000", 
+    };
+
+    const result = await client.signAndBroadcast(senderAddress, messages, fee, "");
 
     if (result.code !== undefined && result.code !== 0) {
         return false;
