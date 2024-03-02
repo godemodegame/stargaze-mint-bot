@@ -27,6 +27,8 @@ async function executeContract(id: number, contractAddress: string, price: numbe
         }),
     }));
 
+    console.log(messages)
+
     const fee = {
         amount: coins(0, "ustars"), 
         gas: "10000000", 
