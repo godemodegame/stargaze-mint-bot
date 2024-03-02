@@ -27,7 +27,7 @@ async function executeContract(id: number, contractAddress: string, price: numbe
         }),
     }));
 
-    console.log(messages)
+    console.log(messages.map((m) => m.value.funds));
 
     const fee = {
         amount: coins(0, "ustars"), 
