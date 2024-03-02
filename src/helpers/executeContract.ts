@@ -23,12 +23,12 @@ async function executeContract(id: number, contractAddress: string, price: numbe
             sender: senderAddress,
             contract: contractAddress,
             msg: Buffer.from(msgBase64, 'base64'),
-            funds: coins(price * 100000, "stars"), 
+            funds: coins(price * 100000, "ustars"), 
         }),
     }));
 
     const fee = {
-        amount: coins(0, "stars"), 
+        amount: coins(0, "ustars"), 
         gas: "10000000", 
     };
 
