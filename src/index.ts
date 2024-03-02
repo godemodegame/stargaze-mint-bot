@@ -39,7 +39,7 @@ const checkMints = async () => {
   for (const mint of mints) {
     if (mint.mintdate < new Date()) {
       try {
-        if (await executeContract(mint.telegram_id, mint.contractAddress, mint.price, mint.amount, mint.mintdate)) {
+        if (await executeContract(mint.telegram_id, mint.contractAddress, mint.price, mint.amount)) {
           bot.telegram.sendMessage(mint.telegram_id, `Minted ${mint.amount} tokens\n\nContract: ${mint.contractAddress}\nPrice: ${mint.price}`);
         } else {
           bot.telegram.sendMessage(mint.telegram_id, `Mint failed\n\nContract: ${mint.contractAddress}`);

@@ -5,11 +5,11 @@ import user from '../models/user';
 
 const rpcEndpoint = "https://rpc.stargaze-apis.com";
 
-async function executeContract(id: number, contractAddress: string, price: number, amount: number, mintdate: Date) {
+async function executeContract(id: number, contractAddress: string, price: number, amount: number) {
     const myRegistry = new Registry();
     myRegistry.register("/cosmwasm.wasm.v1.MsgExecuteContract", MsgExecuteContract);
 
-    const mnemonic = (await user.findById(id))?.seed;
+    const mnemonic = (await user.find({ telegram_id: id }))[0].seed;
 
     const wallet = await DirectSecp256k1HdWallet.fromMnemonic(mnemonic, { prefix: "stars" });
     const client = await SigningStargateClient.connectWithSigner(rpcEndpoint, wallet, { registry: myRegistry });
