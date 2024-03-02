@@ -37,16 +37,18 @@ const startApp = () => {
 	    if (hash === data.get("hash")) {
             if (req.body.date < Date.now()) {
                 return res.status(400).json({error: "Date is in the past"});
-            }
-            if (req.body.amount < 1) {
+            } else if (req.body.amount < 1) {
                 return res.status(400).json({error: "Amount is less than 1"});
-            }
-            if (req.body.price < 0) {
+            } else if (req.body.price < 0) {
                 return res.status(400).json({error: "Price is less than 0"});
-            }
-            if (req.body.address === undefined || req.body.address === "") {
+            } else if (req.body.address === undefined || req.body.address === "") {
                 return res.status(400).json({error: "Address is empty"});
+            } else if (req.body.address.prefix !== "stars") {
+                return res.status(400).json({error: "Address is not a stars address"});
+            } else if (req.body.address.length < 45) {
+                return res.status(400).json({error: "Address is not a stars address"});
             }
+
             await new mint({ 
                 telegram_id: getTelegramId(req.body.initData),
                 contractAddress: req.body.address,
