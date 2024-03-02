@@ -17,17 +17,31 @@ async function executeContract(id: number, contractAddress: string, price: numbe
 
     const msgBase64 = Buffer.from(JSON.stringify({ mint: {} })).toString('base64');
 
-    const messages = Array.from({ length: amount }, () => ({
-        typeUrl: "/cosmwasm.wasm.v1.MsgExecuteContract",
-        value: MsgExecuteContract.fromPartial({
-            sender: senderAddress,
-            contract: contractAddress,
-            msg: Buffer.from(msgBase64, 'base64'),
-            funds: coins(price * 100000, "ustars"), 
-        }),
-    }));
+    let messages: {
+        typeUrl: string;
+        value: MsgExecuteContract;
+    }[];
 
-    console.log(messages.map((m) => m.value.funds));
+    if (price > 0) {
+        messages = Array.from({ length: amount }, () => ({
+            typeUrl: "/cosmwasm.wasm.v1.MsgExecuteContract",
+            value: MsgExecuteContract.fromPartial({
+                sender: senderAddress,
+                contract: contractAddress,
+                msg: Buffer.from(msgBase64, 'base64'),
+                funds: coins(price * 100000, "ustars"), 
+            }),
+        }));
+    } else {
+        messages = Array.from({ length: amount }, () => ({
+            typeUrl: "/cosmwasm.wasm.v1.MsgExecuteContract",
+            value: MsgExecuteContract.fromPartial({
+                sender: senderAddress,
+                contract: contractAddress,
+                msg: Buffer.from(msgBase64, 'base64'),
+            }),
+        }));
+    }
 
     const fee = {
         amount: coins(0, "ustars"), 
