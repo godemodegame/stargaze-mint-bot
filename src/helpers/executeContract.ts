@@ -29,7 +29,7 @@ async function executeContract(id: number, contractAddress: string, price: numbe
                 sender: senderAddress,
                 contract: contractAddress,
                 msg: Buffer.from(msgBase64, 'base64'),
-                funds: coins(price * 100000, "ustars"), 
+                funds: coins(price * 1000000, "ustars"), 
             }),
         }));
     } else {
@@ -45,7 +45,7 @@ async function executeContract(id: number, contractAddress: string, price: numbe
 
     const fee = {
         amount: coins(0, "ustars"), 
-        gas: "10000000", 
+        gas: "10000000",
     };
 
     const result = await client.signAndBroadcast(senderAddress, messages, fee, "");
