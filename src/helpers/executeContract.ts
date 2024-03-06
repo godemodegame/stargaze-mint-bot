@@ -22,26 +22,15 @@ async function executeContract(id: number, contractAddress: string, price: numbe
         value: MsgExecuteContract;
     }[];
 
-    if (price > 0) {
-        messages = Array.from({ length: amount }, () => ({
-            typeUrl: "/cosmwasm.wasm.v1.MsgExecuteContract",
-            value: MsgExecuteContract.fromPartial({
-                sender: senderAddress,
-                contract: contractAddress,
-                msg: Buffer.from(msgBase64, 'base64'),
-                funds: coins(price * 1000000, "ustars"), 
-            }),
-        }));
-    } else {
-        messages = Array.from({ length: amount }, () => ({
-            typeUrl: "/cosmwasm.wasm.v1.MsgExecuteContract",
-            value: MsgExecuteContract.fromPartial({
-                sender: senderAddress,
-                contract: contractAddress,
-                msg: Buffer.from(msgBase64, 'base64'),
-            }),
-        }));
-    }
+    messages = Array.from({ length: amount }, () => ({
+        typeUrl: "/cosmwasm.wasm.v1.MsgExecuteContract",
+        value: MsgExecuteContract.fromPartial({
+            sender: senderAddress,
+            contract: contractAddress,
+            msg: Buffer.from(msgBase64, 'base64'),
+            funds: price > 0 ? coins(price * 1000000, "ustars") : [],
+        }),
+    }));
 
     const fee = {
         amount: coins(0, "ustars"), 
